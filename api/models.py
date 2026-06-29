@@ -17,4 +17,4 @@ class Book(models.Model):
         blank=True,
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
-    created_at = models.DateTimeField(auto_created=True)
+    created_at = models.DateTimeField(auto_now_add=True)

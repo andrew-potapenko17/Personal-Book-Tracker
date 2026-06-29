@@ -19,10 +19,6 @@ class BookView(viewsets.ModelViewSet):
         
         return queryset
 
-class SingleBookView(RetrieveUpdateDestroyAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
-
 class BookStats(APIView):
     def get(self, request):
         books = Book.objects.all()
@@ -42,10 +38,11 @@ class BookStats(APIView):
             if book_status == 'finished':
                 rating += book.rating
             
-            if rating != 0:
-                average_rating = round(rating / count_per_status['finished'], 2)
-            else:
-                average_rating = 0
+        average_rating = 0
+        
+        if rating != 0:
+            average_rating = round(rating / count_per_status['finished'], 2)
+                
             
         return Response({
             'count': count,
