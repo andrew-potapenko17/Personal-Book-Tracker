@@ -6,6 +6,5 @@ router = DefaultRouter()
 router.register(r'books', views.BookView, basename='book')
 
 urlpatterns = [
-    path('books/<int:pk>/', views.SingleBookView.as_view(), name='single_book'),
     path('books/stats/', views.BookStats.as_view(), name='stats')
 ] + router.urls
